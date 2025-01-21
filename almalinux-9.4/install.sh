@@ -58,8 +58,8 @@ dnf install -y my-apache
 systemctl start httpd
 systemctl enable httpd
 
-OMEGA_PHP=/usr/local/bolt/php/bin/php
-ln -s $OMEGA_PHP /usr/bin/bolt-php
+BOLT_PHP=/usr/local/bolt/php/bin/php
+ln -s $BOLT_PHP /usr/bin/bolt-php
 HOSTNAME=$(hostname)
 IP_ADDRESS=$(hostname -I | cut -d " " -f 1)
 
