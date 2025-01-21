@@ -56,7 +56,7 @@ dpkg -i omega-php-8.2.0-ubuntu-20.04.deb
 wget https://github.com/AdminBolt/Dist/raw/main/compilators/debian/nginx/dist/omega-nginx-1.24.0-ubuntu-20.04.deb
 dpkg -i omega-nginx-1.24.0-ubuntu-20.04.deb
 
-OMEGA_PHP=/usr/local/omega/php/bin/php
+OMEGA_PHP=/usr/local/bolt/php/bin/php
 ln -s $OMEGA_PHP /usr/bin/omega-php
 HOSTNAME=$(hostname)
 IP_ADDRESS=$(hostname -I | cut -d " " -f 1)
@@ -75,35 +75,35 @@ if [ -n "$1" ]; then
     GIT_BRANCH=$1
 fi
 
-wget https://github.com/AdminBolt/WebCompiledVersions/raw/main/panel-omega-latest.zip
-unzip -qq -o panel-omega-latest.zip -d /usr/local/omega/web
-rm -rf panel-omega-latest.zip
+wget https://github.com/AdminBolt/WebCompiledVersions/raw/main/adminbolt-latest.zip
+unzip -qq -o adminbolt-latest.zip -d /usr/local/bolt/web
+rm -rf adminbolt-latest.zip
 
 chmod 711 /home
 chmod -R 750 /usr/local/omega
 
-ln -s /usr/local/omega/web/omega-shell.sh /usr/bin/omega-shell
-chmod +x /usr/local/omega/web/omega-shell.sh
+ln -s /usr/local/bolt/web/omega-shell.sh /usr/bin/omega-shell
+chmod +x /usr/local/bolt/web/omega-shell.sh
 
-ln -s /usr/local/omega/web/omega-cli.sh /usr/bin/omega-cli
-chmod +x /usr/local/omega/web/omega-cli.sh
+ln -s /usr/local/bolt/web/omega-cli.sh /usr/bin/omega-cli
+chmod +x /usr/local/bolt/web/omega-cli.sh
 
-mkdir -p /usr/local/omega/ssl
-cp /usr/local/omega/web/server/ssl/omega.crt /usr/local/omega/ssl/omega.crt
-cp /usr/local/omega/web/server/ssl/omega.key /usr/local/omega/ssl/omega.key
+mkdir -p /usr/local/bolt/ssl
+cp /usr/local/bolt/web/server/ssl/omega.crt /usr/local/bolt/ssl/omega.crt
+cp /usr/local/bolt/web/server/ssl/omega.key /usr/local/bolt/ssl/omega.key
 GIT_BRANCH="stable"
 if [ -n "$1" ]; then
     GIT_BRANCH=$1
 fi
 
 # Check dir exists
-if [ ! -d "/usr/local/omega/web" ]; then
+if [ ! -d "/usr/local/bolt/web" ]; then
   echo "AdminBolt directory not found."
   return 1
 fi
 
 # Go to web directory
-cd /usr/local/omega/web
+cd /usr/local/bolt/web
 
 # Create MySQL OMEGA user
 MYSQL_OMEGA_ROOT_USERNAME="omega"
@@ -155,8 +155,8 @@ omega-php artisan db:seed
 
 omega-php artisan omega:set-ini-settings APP_ENV "production"
 
-chmod -R o+w /usr/local/omega/web/storage/
-chmod -R o+w /usr/local/omega/web/bootstrap/cache/
+chmod -R o+w /usr/local/bolt/web/storage/
+chmod -R o+w /usr/local/bolt/web/bootstrap/cache/
 
 omega-cli run-repair
 

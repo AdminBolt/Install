@@ -58,11 +58,11 @@ dpkg -i omega-nginx-1.24.0-ubuntu-22.04.deb
 
 service omega start
 
-OMEGA_PHP=/usr/local/omega/php/bin/php
+OMEGA_PHP=/usr/local/bolt/php/bin/php
 ln -s $OMEGA_PHP /usr/bin/omega-php
 
-ln -s /usr/local/omega/web/omega-shell.sh /usr/bin/omega-shell
-chmod +x /usr/local/omega/web/omega-shell.sh
+ln -s /usr/local/bolt/web/omega-shell.sh /usr/bin/omega-shell
+chmod +x /usr/local/bolt/web/omega-shell.sh
 
-ln -s /usr/local/omega/web/omega-cli.sh /usr/bin/omega-cli
-chmod +x /usr/local/omega/web/omega-cli.sh
+ln -s /usr/local/bolt/web/omega-cli.sh /usr/bin/omega-cli
+chmod +x /usr/local/bolt/web/omega-cli.sh
