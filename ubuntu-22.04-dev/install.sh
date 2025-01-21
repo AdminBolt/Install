@@ -124,14 +124,14 @@ mysql -u root <<MYSQL_SCRIPT
 MYSQL_SCRIPT
 
 # Create database
-PANEL_OMEGA_DB_PASSWORD="$(apg -a 1 -m 50 -x 50 -M NCL -n 1)"
-PANEL_OMEGA_DB_NAME="omega_$(tr -dc a-za-z0-9 </dev/urandom | head -c 13; echo)"
-PANEL_OMEGA_DB_USER="omega_$(tr -dc a-za-z0-9 </dev/urandom | head -c 13; echo)"
+ADMINBOLT_DB_PASSWORD="$(apg -a 1 -m 50 -x 50 -M NCL -n 1)"
+ADMINBOLT_DB_NAME="omega_$(tr -dc a-za-z0-9 </dev/urandom | head -c 13; echo)"
+ADMINBOLT_DB_USER="omega_$(tr -dc a-za-z0-9 </dev/urandom | head -c 13; echo)"
 
 mysql -u root <<MYSQL_SCRIPT
-  CREATE DATABASE $PANEL_OMEGA_DB_NAME;
-  CREATE USER '$PANEL_OMEGA_DB_USER'@'localhost' IDENTIFIED BY "$PANEL_OMEGA_DB_PASSWORD";
-  GRANT ALL PRIVILEGES ON $PANEL_OMEGA_DB_NAME.* TO '$PANEL_OMEGA_DB_USER'@'localhost';
+  CREATE DATABASE $ADMINBOLT_DB_NAME;
+  CREATE USER '$ADMINBOLT_DB_USER'@'localhost' IDENTIFIED BY "$ADMINBOLT_DB_PASSWORD";
+  GRANT ALL PRIVILEGES ON $ADMINBOLT_DB_NAME.* TO '$ADMINBOLT_DB_USER'@'localhost';
   FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
@@ -149,10 +149,10 @@ echo "$MYSQL_ROOT_PASSWORD" > /root/.mysql_root_password
 # Configure the application
 bolt-php artisan omega:set-ini-settings APP_ENV "local"
 bolt-php artisan omega:set-ini-settings APP_URL "127.0.0.1:8443"
-bolt-php artisan omega:set-ini-settings APP_NAME "PANEL_OMEGA"
-bolt-php artisan omega:set-ini-settings DB_DATABASE "$PANEL_OMEGA_DB_NAME"
-bolt-php artisan omega:set-ini-settings DB_USERNAME "$PANEL_OMEGA_DB_USER"
-bolt-php artisan omega:set-ini-settings DB_PASSWORD "$PANEL_OMEGA_DB_PASSWORD"
+bolt-php artisan omega:set-ini-settings APP_NAME "ADMIN_BOLT"
+bolt-php artisan omega:set-ini-settings DB_DATABASE "$ADMINBOLT_DB_NAME"
+bolt-php artisan omega:set-ini-settings DB_USERNAME "$ADMINBOLT_DB_USER"
+bolt-php artisan omega:set-ini-settings DB_PASSWORD "$ADMINBOLT_DB_PASSWORD"
 bolt-php artisan omega:set-ini-settings DB_CONNECTION "mysql"
 bolt-php artisan omega:set-ini-settings MYSQL_ROOT_USERNAME "$MYSQL_OMEGA_ROOT_USERNAME"
 bolt-php artisan omega:set-ini-settings MYSQL_ROOT_PASSWORD "$MYSQL_OMEGA_ROOT_PASSWORD"
