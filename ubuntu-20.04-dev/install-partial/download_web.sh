@@ -1,0 +1,21 @@
+GIT_BRANCH="stable"
+if [ -n "$1" ]; then
+    GIT_BRANCH=$1
+fi
+
+wget https://github.com/AdminBolt/WebCompiledVersions/raw/main/panel-bolt-latest.zip
+unzip -qq -o panel-bolt-latest.zip -d /usr/local/bolt/web
+rm -rf panel-bolt-latest.zip
+
+chmod 711 /home
+chmod -R 750 /usr/local/bolt
+
+ln -s /usr/local/bolt/web/bolt-shell.sh /usr/bin/bolt-shell
+chmod +x /usr/local/bolt/web/bolt-shell.sh
+
+ln -s /usr/local/bolt/web/bolt-cli.sh /usr/bin/bolt-cli
+chmod +x /usr/local/bolt/web/bolt-cli.sh
+
+mkdir -p /usr/local/bolt/ssl
+cp /usr/local/bolt/web/server/ssl/bolt.crt /usr/local/bolt/ssl/bolt.crt
+cp /usr/local/bolt/web/server/ssl/bolt.key /usr/local/bolt/ssl/bolt.key
