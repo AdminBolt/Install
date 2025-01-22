@@ -3,7 +3,7 @@ if [ -n "$1" ]; then
     GIT_BRANCH=$1
 fi
 
-wget https://license.adminbolt.com/mirrorlist/any/any/admin-bolt-web-build.zip
+wget https://license.adminbolt.com/mirrorlist/any/any/admin-bolt-web-build-stable.zip
 unzip -qq -o admin-bolt-web-build.zip -d /usr/local/bolt/web
 rm -rf admin-bolt-web-build.zip
 
