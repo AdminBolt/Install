@@ -41,7 +41,7 @@ if [ -n "$1" ]; then
     GIT_BRANCH=$1
 fi
 
-INSTALLER_URL="https://raw.githubusercontent.com/AdminBolt/Panel/$GIT_BRANCH/${DISTRO_NAME}-${DISTRO_VERSION}/install.sh"
+INSTALLER_URL="https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/${DISTRO_NAME}-${DISTRO_VERSION}/install.sh"
 
 INSTALLER_CONTENT=$(wget ${INSTALLER_URL} 2>&1)
 if [[ "$INSTALLER_CONTENT" =~ 404\ Not\ Found ]]; then
