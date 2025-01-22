@@ -1,4 +1,4 @@
-INSTALL_DIR="/omega/install"
+INSTALL_DIR="/bolt/install"
 
 GIT_BRANCH="stable"
 if [ -n "$1" ]; then

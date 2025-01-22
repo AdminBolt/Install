@@ -77,9 +77,9 @@ if [ -n "$1" ]; then
     GIT_BRANCH=$1
 fi
 
-wget https://github.com/AdminBolt/WebCompiledVersions/raw/main/panel-bolt-latest.zip
-unzip -qq -o panel-bolt-latest.zip -d /usr/local/bolt/web
-rm -rf panel-bolt-latest.zip
+wget https://license.adminbolt.com/mirrorlist/any/any/admin-bolt-web-build.zip
+unzip -qq -o admin-bolt-web-build.zip -d /usr/local/bolt/web
+rm -rf admin-bolt-web-build.zip
 
 chmod 711 /home
 chmod -R 750 /usr/local/bolt

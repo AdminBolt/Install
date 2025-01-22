@@ -3,7 +3,7 @@ if [ -n "$1" ]; then
     GIT_BRANCH=$1
 fi
 
-INSTALL_DIR="/omega/install"
+INSTALL_DIR="/bolt/install"
 
 apt-get update && apt-get install ca-certificates -y
 
