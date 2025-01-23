@@ -73,7 +73,9 @@ cp /usr/local/bolt/web/server/php/php-fpm.conf /usr/local/bolt/php/etc/php-fpm.c
 
 service bolt start
 
-CURRENT_IP=$(hostname -I | awk '{print $1}')
+#CURRENT_IP=$(hostname -I | awk '{print $1}')
+#
+#echo "AdminBolt services started."
+#echo "Please visit https://$CURRENT_IP:8443 to continue installation of the panel."
 
-echo "AdminBolt services started."
-echo "Please visit https://$CURRENT_IP:8443 to continue installation of the panel."
+bolt-php /usr/local/bolt/web/artisan bolt:install-core
