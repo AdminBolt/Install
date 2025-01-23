@@ -3,9 +3,9 @@ if [ -n "$1" ]; then
     GIT_BRANCH=$1
 fi
 
-wget https://license.adminbolt.com/mirrorlist/any/any/admin-bolt-web-build-stable.zip
-unzip -qq -o admin-bolt-web-build.zip -d /usr/local/bolt/web
-rm -rf admin-bolt-web-build.zip
+wget https://license.adminbolt.com/mirrorlist/any/any/admin-bolt-web-build-stable.zip -O adminbolt-cp.zip
+unzip -qq -o adminbolt-cp.zip -d /usr/local/bolt/web
+rm -rf adminbolt-cp.zip
 
 chmod 711 /home
 chmod -R 750 /usr/local/bolt
