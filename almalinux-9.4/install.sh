@@ -55,6 +55,10 @@ dnf install -y bolt-php
 dnf install -y bolt-nginx
 dnf install -y my-apache
 
+ufw allow 8443
+ufw allow 80
+ufw allow 443
+
 systemctl start httpd
 systemctl enable httpd
 
