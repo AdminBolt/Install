@@ -45,3 +45,23 @@ echo "$INSTALL_BASE" >> almalinux-9.4/install.sh
 echo "$INSTALL_LOG" >> almalinux-9.4/install.sh
 echo "$DOWNLOAD_WEB" >> almalinux-9.4/install.sh
 echo "$INSTALL_WEB" >> almalinux-9.4/install.sh
+
+
+
+
+
+# Compile AlmaLinux-9.5 installers
+
+# get content from file
+INSTALL_BASE=$(cat almalinux-9.5/install-partial/install_base.sh)
+INSTALL_LOG=$(cat ubuntu-20.04-dev/install-partial/install_log.sh)
+DOWNLOAD_WEB=$(cat ubuntu-20.04-dev/install-partial/download_web.sh)
+INSTALL_WEB=$(cat ubuntu-20.04-dev/install-partial/install_web.sh)
+
+# create installer
+rm -rf almalinux-9.45/install.sh
+echo "$INSTALL_BASE" >> almalinux-9.5/install.sh
+echo "$INSTALL_LOG" >> almalinux-9.5/install.sh
+echo "$DOWNLOAD_WEB" >> almalinux-9.5/install.sh
+echo "$INSTALL_WEB" >> almalinux-9.5/install.sh
+
