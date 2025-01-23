@@ -162,7 +162,7 @@ chmod -R o+w /usr/local/bolt/web/storage/
 chmod -R o+w /usr/local/bolt/web/bootstrap/cache/
 
 cp /usr/local/bolt/web/server/nginx/nginx.conf /usr/local/bolt/nginx/conf/nginx.conf
-cp /usr/local/bolt/web/server/php/php-fpm.conf /usr/local/omega/php/etc/php-fpm.conf
+cp /usr/local/bolt/web/server/php/php-fpm.conf /usr/local/bolt/php/etc/php-fpm.conf
 
 #bolt-cli run-repair
 

@@ -1,6 +1,6 @@
 # Name:  AdminBolt AlmaLinux $releasever
 # URL: http://www.adminbolt.com/
-[omega]
+[bolt]
 name = AdminBolt AlmaLinux $releasever
 baseurl = https://license.adminbolt.com/mirrorlist/almalinux/$releasever
 enabled = 1

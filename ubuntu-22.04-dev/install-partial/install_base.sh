@@ -48,15 +48,15 @@ service mysql start
 wget https://raw.githubusercontent.com/AdminBolt/Panel/$GIT_BRANCH/installers/ubuntu-22.04/greeting.sh
 mv greeting.sh /etc/profile.d/bolt-greeting.sh
 
-# Install OMEGA PHP
+# Install BOLT PHP
 wget https://github.com/AdminBolt/Dist/raw/main/compilators/debian/php/dist/bolt-php-8.2.0-ubuntu-22.04.deb
 dpkg -i bolt-php-8.2.0-ubuntu-22.04.deb
 
-# Install OMEGA NGINX
+# Install BOLT NGINX
 wget https://github.com/AdminBolt/Dist/raw/main/compilators/debian/nginx/dist/bolt-nginx-1.24.0-ubuntu-22.04.deb
 dpkg -i bolt-nginx-1.24.0-ubuntu-22.04.deb
 
-service omega start
+service bolt start
 
 OMEGA_PHP=/usr/local/bolt/php/bin/php
 ln -s $OMEGA_PHP /usr/bin/bolt-php

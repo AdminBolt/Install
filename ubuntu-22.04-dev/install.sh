@@ -48,15 +48,15 @@ service mysql start
 wget https://raw.githubusercontent.com/AdminBolt/Panel/$GIT_BRANCH/installers/ubuntu-22.04/greeting.sh
 mv greeting.sh /etc/profile.d/bolt-greeting.sh
 
-# Install OMEGA PHP
+# Install BOLT PHP
 wget https://github.com/AdminBolt/Dist/raw/main/compilators/debian/php/dist/bolt-php-8.2.0-ubuntu-22.04.deb
 dpkg -i bolt-php-8.2.0-ubuntu-22.04.deb
 
-# Install OMEGA NGINX
+# Install BOLT NGINX
 wget https://github.com/AdminBolt/Dist/raw/main/compilators/debian/nginx/dist/bolt-nginx-1.24.0-ubuntu-22.04.deb
 dpkg -i bolt-nginx-1.24.0-ubuntu-22.04.deb
 
-service omega start
+service bolt start
 
 OMEGA_PHP=/usr/local/bolt/php/bin/php
 ln -s $OMEGA_PHP /usr/bin/bolt-php
@@ -88,7 +88,7 @@ unzip -qq -o adminbolt-latest.zip -d /usr/local/bolt/web
 rm -rf adminbolt-latest.zip
 
 chmod 711 /home
-chmod -R 750 /usr/local/omega
+chmod -R 750 /usr/local/bolt
 
 ln -s /usr/local/bolt/web/bolt-shell.sh /usr/bin/bolt-shell
 chmod +x /usr/local/bolt/web/bolt-shell.sh
@@ -97,8 +97,8 @@ ln -s /usr/local/bolt/web/bolt-cli.sh /usr/bin/bolt-cli
 chmod +x /usr/local/bolt/web/bolt-cli.sh
 
 mkdir -p /usr/local/bolt/ssl
-cp /usr/local/bolt/web/server/ssl/omega.crt /usr/local/bolt/ssl/omega.crt
-cp /usr/local/bolt/web/server/ssl/omega.key /usr/local/bolt/ssl/omega.key
+cp /usr/local/bolt/web/server/ssl/bolt.crt /usr/local/bolt/ssl/bolt.crt
+cp /usr/local/bolt/web/server/ssl/bolt.key /usr/local/bolt/ssl/bolt.key
 GIT_BRANCH="stable"
 if [ -n "$1" ]; then
     GIT_BRANCH=$1
@@ -113,8 +113,8 @@ fi
 # Go to web directory
 cd /usr/local/bolt/web
 
-# Create MySQL OMEGA user
-MYSQL_OMEGA_ROOT_USERNAME="omega"
+# Create MySQL BOLT user
+MYSQL_OMEGA_ROOT_USERNAME="bolt"
 MYSQL_OMEGA_ROOT_PASSWORD="$(apg -a 1 -m 50 -x 50 -M NCL -n 1)"
 
 mysql -u root <<MYSQL_SCRIPT
@@ -147,28 +147,28 @@ MYSQL_SCRIPT
 echo "$MYSQL_ROOT_PASSWORD" > /root/.mysql_root_password
 
 # Configure the application
-bolt-php artisan omega:set-ini-settings APP_ENV "local"
-bolt-php artisan omega:set-ini-settings APP_URL "127.0.0.1:8443"
-bolt-php artisan omega:set-ini-settings APP_NAME "ADMIN_BOLT"
-bolt-php artisan omega:set-ini-settings DB_DATABASE "$ADMINBOLT_DB_NAME"
-bolt-php artisan omega:set-ini-settings DB_USERNAME "$ADMINBOLT_DB_USER"
-bolt-php artisan omega:set-ini-settings DB_PASSWORD "$ADMINBOLT_DB_PASSWORD"
-bolt-php artisan omega:set-ini-settings DB_CONNECTION "mysql"
-bolt-php artisan omega:set-ini-settings MYSQL_ROOT_USERNAME "$MYSQL_OMEGA_ROOT_USERNAME"
-bolt-php artisan omega:set-ini-settings MYSQL_ROOT_PASSWORD "$MYSQL_OMEGA_ROOT_PASSWORD"
-bolt-php artisan omega:key-generate
+bolt-php artisan bolt:set-ini-settings APP_ENV "local"
+bolt-php artisan bolt:set-ini-settings APP_URL "127.0.0.1:8443"
+bolt-php artisan bolt:set-ini-settings APP_NAME "ADMIN_BOLT"
+bolt-php artisan bolt:set-ini-settings DB_DATABASE "$ADMINBOLT_DB_NAME"
+bolt-php artisan bolt:set-ini-settings DB_USERNAME "$ADMINBOLT_DB_USER"
+bolt-php artisan bolt:set-ini-settings DB_PASSWORD "$ADMINBOLT_DB_PASSWORD"
+bolt-php artisan bolt:set-ini-settings DB_CONNECTION "mysql"
+bolt-php artisan bolt:set-ini-settings MYSQL_ROOT_USERNAME "$MYSQL_OMEGA_ROOT_USERNAME"
+bolt-php artisan bolt:set-ini-settings MYSQL_ROOT_PASSWORD "$MYSQL_OMEGA_ROOT_PASSWORD"
+bolt-php artisan bolt:key-generate
 
 bolt-php artisan migrate
 bolt-php artisan db:seed
 
-bolt-php artisan omega:set-ini-settings APP_ENV "production"
+bolt-php artisan bolt:set-ini-settings APP_ENV "production"
 
 chmod -R o+w /usr/local/bolt/web/storage/
 chmod -R o+w /usr/local/bolt/web/bootstrap/cache/
 
 bolt-cli run-repair
 
-service omega start
+service bolt start
 
 CURRENT_IP=$(hostname -I | awk '{print $1}')
 
