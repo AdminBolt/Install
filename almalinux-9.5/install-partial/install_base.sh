@@ -51,9 +51,9 @@ mv greeting.sh /etc/profile.d/bolt-greeting.sh
 wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.5/repos/bolt.repo
 mv bolt.repo /etc/yum.repos.d/bolt.repo
 
-dnf install -y bolt-php
-dnf install -y bolt-nginx
-dnf install -y my-apache
+dnf install -y bolt-php --enablerepo=bolt
+dnf install -y bolt-nginx --enablerepo=bolt
+dnf install -y httpd --enablerepo=bolt
 
 ufw allow 8443
 ufw allow 80
