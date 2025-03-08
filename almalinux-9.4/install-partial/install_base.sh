@@ -53,6 +53,7 @@ mv bolt.repo /etc/yum.repos.d/bolt.repo
 
 dnf install -y bolt-php --enablerepo=bolt
 dnf install -y bolt-nginx --enablerepo=bolt
+dnf install -y bolt-updater --enablerepo=bolt
 dnf install -y httpd --enablerepo=bolt
 
 ufw allow 8443
