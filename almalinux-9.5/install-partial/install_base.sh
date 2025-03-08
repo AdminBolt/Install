@@ -45,10 +45,10 @@ done
 systemctl start mysqld
 systemctl enable mysqld
 #
-wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.5/greeting.sh
+wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.5/greeting.sh -q
 mv greeting.sh /etc/profile.d/bolt-greeting.sh
 
-wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.5/repos/bolt.repo
+wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.5/repos/bolt.repo -q
 mv bolt.repo /etc/yum.repos.d/bolt.repo
 
 dnf install -y bolt-php --enablerepo=bolt
