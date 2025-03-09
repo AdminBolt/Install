@@ -27,14 +27,13 @@ DEPENDENCIES_LIST=(
     "unzip"
     "zip"
     "tar"
-    "MariaDB"
-    "MariaDB-server"
-    "MariaDB-client"
+    "mariadb"
+    "mariadb-common"
+    "mariadb-server"
     "lsb-release"
     "gnupg2"
     "ca-certificates"
     "apt-transport-https"
-    "software-properties-common"
     "supervisor"
 )
 # Check if the dependencies are installed
@@ -56,10 +55,6 @@ dnf install -y bolt-php --enablerepo=bolt
 dnf install -y bolt-nginx --enablerepo=bolt
 dnf install -y bolt-updater --enablerepo=bolt
 dnf install -y httpd --enablerepo=bolt
-
-ufw allow 8443
-ufw allow 80
-ufw allow 443
 
 systemctl start httpd
 systemctl enable httpd
