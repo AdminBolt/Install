@@ -27,8 +27,9 @@ DEPENDENCIES_LIST=(
     "unzip"
     "zip"
     "tar"
-    "mysql-common"
-    "mysql-server"
+    "MariaDB"
+    "MariaDB-server"
+    "MariaDB-client"
     "lsb-release"
     "gnupg2"
     "ca-certificates"
@@ -41,9 +42,9 @@ for DEPENDENCY in "${DEPENDENCIES_LIST[@]}"; do
     dnf install -y $DEPENDENCY
 done
 #
-## Start MySQL
-systemctl start mysqld
-systemctl enable mysqld
+## Start MariaDB
+systemctl start mariadb
+systemctl enable mariadb
 #
 wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.5/greeting.sh -q
 mv greeting.sh /etc/profile.d/bolt-greeting.sh
