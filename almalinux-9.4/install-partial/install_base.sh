@@ -44,12 +44,15 @@ done
 ## Start MariaDB
 systemctl start mariadb
 systemctl enable mariadb
+
 #
 wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.4/greeting.sh -q
 mv greeting.sh /etc/profile.d/bolt-greeting.sh
 
 wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.4/repos/bolt.repo -q
 mv bolt.repo /etc/yum.repos.d/bolt.repo
+
+useradd -r -s /usr/sbin/nologin boltweb
 
 dnf install -y bolt-php --enablerepo=bolt
 dnf install -y bolt-nginx --enablerepo=bolt

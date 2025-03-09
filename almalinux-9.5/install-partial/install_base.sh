@@ -51,6 +51,8 @@ mv greeting.sh /etc/profile.d/bolt-greeting.sh
 wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.5/repos/bolt.repo -q
 mv bolt.repo /etc/yum.repos.d/bolt.repo
 
+useradd -r -s /usr/sbin/nologin boltweb
+
 dnf install -y bolt-php --enablerepo=bolt
 dnf install -y bolt-nginx --enablerepo=bolt
 dnf install -y bolt-updater --enablerepo=bolt
