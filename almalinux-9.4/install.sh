@@ -27,32 +27,29 @@ DEPENDENCIES_LIST=(
     "unzip"
     "zip"
     "tar"
-    "mariadb"
-    "mariadb-common"
-    "mariadb-server"
+    "mysql-common"
+    "mysql-server"
     "lsb-release"
     "gnupg2"
     "ca-certificates"
     "apt-transport-https"
+    "software-properties-common"
     "supervisor"
 )
 # Check if the dependencies are installed
 for DEPENDENCY in "${DEPENDENCIES_LIST[@]}"; do
     dnf install -y $DEPENDENCY
 done
-#
-## Start MariaDB
-systemctl start mariadb
-systemctl enable mariadb
 
-#
+## Start MySQL
+systemctl start mysqld
+systemctl enable mysqld
+
 wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.4/greeting.sh -q
 mv greeting.sh /etc/profile.d/bolt-greeting.sh
 
 wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.4/repos/bolt.repo -q
 mv bolt.repo /etc/yum.repos.d/bolt.repo
-
-useradd -r -s /usr/sbin/nologin boltweb
 
 dnf install -y bolt-php --enablerepo=bolt
 dnf install -y bolt-nginx --enablerepo=bolt
@@ -115,15 +112,14 @@ cd /usr/local/bolt/web
 chmod -R o+w /usr/local/bolt/web/storage/
 chmod -R o+w /usr/local/bolt/web/bootstrap/cache/
 
-rm -f /usr/local/bolt/php/lib/php.ini
-ln -s /usr/local/bolt/web/server/php/php.ini /usr/local/bolt/php/lib/php.ini
+rm -rf /usr/local/bolt/nginx/conf/nginx.conf
+cp /usr/local/bolt/web/server/nginx/nginx.conf /usr/local/bolt/nginx/conf/nginx.conf
 
 rm -rf /usr/local/bolt/php/etc/php-fpm.conf
-ln -s /usr/local/bolt/web/server/php/php-fpm.conf /usr/local/bolt/php/etc/php-fpm.conf
+cp /usr/local/bolt/web/server/php/php-fpm.conf /usr/local/bolt/php/etc/php-fpm.conf
 
-rm -rf /usr/local/bolt/nginx/conf/nginx.conf
-ln -s /usr/local/bolt/web/server/nginx/nginx.conf /usr/local/bolt/nginx/conf/nginx.conf
-
+rm -rf /usr/local/bolt/php/lib/php.ini
+cp /usr/local/bolt/web/server/php/php.ini /usr/local/bolt/php/lib/php.ini
 
 service bolt start
 
