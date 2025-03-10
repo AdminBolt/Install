@@ -56,10 +56,6 @@ dnf install -y bolt-nginx --enablerepo=bolt
 dnf install -y bolt-updater --enablerepo=bolt
 dnf install -y httpd --enablerepo=bolt
 
-ufw allow 8443
-ufw allow 80
-ufw allow 443
-
 systemctl start httpd
 systemctl enable httpd
 
