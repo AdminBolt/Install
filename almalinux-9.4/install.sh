@@ -40,11 +40,11 @@ DEPENDENCIES_LIST=(
 for DEPENDENCY in "${DEPENDENCIES_LIST[@]}"; do
     dnf install -y $DEPENDENCY
 done
-#
+
 ## Start MySQL
 systemctl start mysqld
 systemctl enable mysqld
-#
+
 wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/almalinux-9.4/greeting.sh -q
 mv greeting.sh /etc/profile.d/bolt-greeting.sh
 
