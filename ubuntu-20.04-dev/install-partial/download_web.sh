@@ -1,8 +1,3 @@
-GIT_BRANCH="stable"
-if [ -n "$1" ]; then
-    GIT_BRANCH=$1
-fi
-
 wget https://license.adminbolt.com/mirrorlist/any/any/adminbolt-web-stable.zip -O adminbolt-cp.zip -q
 unzip -qq -o adminbolt-cp.zip -d /usr/local/bolt/web
 rm -rf adminbolt-cp.zip

@@ -1,8 +1,3 @@
-GIT_BRANCH="stable"
-if [ -n "$1" ]; then
-    GIT_BRANCH=$1
-fi
-
 INSTALL_DIR="/bolt/install"
 
 yum update -y
@@ -72,11 +67,6 @@ DISTRO_NAME=${DISTRO_NAME//\"/} # Remove quotes from name string
 LOG_JSON='{"os": "'$DISTRO_NAME-$DISTRO_VERSION'", "host_name": "'$HOSTNAME'", "ip": "'$IP_ADDRESS'"}'
 
 curl -s https://adminbolt.com/api/bolt-installation-log -X POST -H "Content-Type: application/json" -d "$LOG_JSON"
-GIT_BRANCH="stable"
-if [ -n "$1" ]; then
-    GIT_BRANCH=$1
-fi
-
 wget https://license.adminbolt.com/mirrorlist/any/any/adminbolt-web-stable.zip -O adminbolt-cp.zip -q
 unzip -qq -o adminbolt-cp.zip -d /usr/local/bolt/web
 rm -rf adminbolt-cp.zip
@@ -94,11 +84,6 @@ mkdir -p /usr/local/bolt/ssl
 cp /usr/local/bolt/web/server/ssl/bolt.crt /usr/local/bolt/ssl/bolt.crt
 cp /usr/local/bolt/web/server/ssl/bolt.key /usr/local/bolt/ssl/bolt.key
 cp /usr/local/bolt/web/server/ssl/bolt.chain /usr/local/bolt/ssl/bolt.chain
-GIT_BRANCH="stable"
-if [ -n "$1" ]; then
-    GIT_BRANCH=$1
-fi
-
 # Check dir exists
 if [ ! -d "/usr/local/bolt/web" ]; then
   echo "AdminBolt directory not found."

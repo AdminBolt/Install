@@ -1,8 +1,3 @@
-GIT_BRANCH="stable"
-if [ -n "$1" ]; then
-    GIT_BRANCH=$1
-fi
-
 # Check dir exists
 if [ ! -d "/usr/local/bolt/web" ]; then
   echo "AdminBolt directory not found."

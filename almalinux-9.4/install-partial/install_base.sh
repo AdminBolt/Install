@@ -1,8 +1,3 @@
-GIT_BRANCH="stable"
-if [ -n "$1" ]; then
-    GIT_BRANCH=$1
-fi
-
 INSTALL_DIR="/bolt/install"
 
 yum update -y
