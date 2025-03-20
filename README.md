@@ -10,7 +10,7 @@ wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/install
 
 FOR DEV:
 ```
-wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh --branch=dev
+wget https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/main/install.sh && chmod +x install.sh && ./install.sh --installer-branch=mysql-installation 
 ```
 
 The admin panel can be opened on port: yourserver.com:8443
