@@ -36,17 +36,21 @@ DISTRO_NAME=$(echo $DISTRO_NAME | tr '[:upper:]' '[:lower:]')
 DISTRO_NAME=${DISTRO_NAME// /-}
 
 # Default values for command-line arguments
-GIT_BRANCH="stable"
+INSTALLER_BRANCH="main"
+WEB_PANEL_BRANCH="stable"
+
 # Parse arguments
 while [[ "$#" -gt 0 ]]; do
     case "$1" in
-        --branch=*) GIT_BRANCH="${1#*=}";;
-        --branch) GIT_BRANCH="$2"; shift;;
+        --installer-branch=*) INSTALLER_BRANCH="${1#*=}";;
+        --installer-branch) INSTALLER_BRANCH="$2"; shift;;
+        --web-panel-branch=*) WEB_PANEL_BRANCH="${1#*=}";;
+        --web-panel-branch) WEB_PANEL_BRANCH="$2"; shift;;
     esac
     shift
 done
 
-INSTALLER_URL="https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/${GIT_BRANCH}/${DISTRO_NAME}-${DISTRO_VERSION}/install.sh"
+INSTALLER_URL="https://raw.githubusercontent.com/AdminBolt/Install/refs/heads/${INSTALLER_BRANCH}/${DISTRO_NAME}-${DISTRO_VERSION}/install.sh"
 
 INSTALLER_CONTENT=$(wget ${INSTALLER_URL} 2>&1)
 if [[ "$INSTALLER_CONTENT" =~ 404\ Not\ Found ]]; then
@@ -64,4 +68,4 @@ fi
 
 wget $INSTALLER_URL -O ./bolt-installer.sh
 chmod +x ./bolt-installer.sh
-bash ./bolt-installer.sh --branch=$GIT_BRANCH
+bash ./bolt-installer.sh
