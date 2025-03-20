@@ -33,7 +33,6 @@ DEPENDENCIES_LIST=(
     "gnupg2"
     "ca-certificates"
     "apt-transport-https"
-    "software-properties-common"
     "supervisor"
 )
 # Check if the dependencies are installed

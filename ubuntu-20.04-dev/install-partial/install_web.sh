@@ -15,7 +15,7 @@ cd /usr/local/bolt/web
 chmod -R o+w /usr/local/bolt/web/storage/
 chmod -R o+w /usr/local/bolt/web/bootstrap/cache/
 
-rm -f /usr/local/bolt/php/lib/php.ini
+rm -rf /usr/local/bolt/php/lib/php.ini
 ln -s /usr/local/bolt/web/server/php/php.ini /usr/local/bolt/php/lib/php.ini
 
 rm -rf /usr/local/bolt/php/etc/php-fpm.conf
